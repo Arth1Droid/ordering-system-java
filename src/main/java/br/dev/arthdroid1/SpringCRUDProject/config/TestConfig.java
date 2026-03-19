@@ -3,16 +3,12 @@ package br.dev.arthdroid1.SpringCRUDProject.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import br.dev.arthdroid1.SpringCRUDProject.models.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import br.dev.arthdroid1.SpringCRUDProject.models.entities.Category;
-import br.dev.arthdroid1.SpringCRUDProject.models.entities.Order;
-import br.dev.arthdroid1.SpringCRUDProject.models.entities.OrderItem;
-import br.dev.arthdroid1.SpringCRUDProject.models.entities.Product;
-import br.dev.arthdroid1.SpringCRUDProject.models.entities.User;
 import br.dev.arthdroid1.SpringCRUDProject.models.entities.enums.OrderStatus;
 import br.dev.arthdroid1.SpringCRUDProject.repositories.CategoryRepository;
 import br.dev.arthdroid1.SpringCRUDProject.repositories.OrderItemRepository;
@@ -78,7 +74,11 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(order3, p5, 2, p5.getPrice());
         
         orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
-        
+
+        Payment pay1 = new Payment(null,Instant.parse("2025-06-20T21:53:07Z"),order1);
+        order1.setPayment(pay1);
+
+        orderRepository.save(order1);
 
 
 
